@@ -10,26 +10,27 @@ string bullpgia::calculateBullAndPgia(string choos, string guess)
 	string answer = "";
 	int bull = 0;
 	int pgia = 0;
-	int h[9];
+	int h[10];
 	int k;
-	bool used = false;
+	bool flagP = false;
 
 	for (int i = 0; i < lengh; i++) 
 	{
 		k = choos[i] - 48;
-		h[k]= h[k]+1;
+		h[k] = h[k] + 1;
 	}
 
 	for (int i = 0; i < lengh; i++)
 	{
 		k = guess[i] - 48;
+		flagP = false;
 		for (int j = 0; j < lengh; j++)
 		{
 			if (choos[j] == guess[i])
 			{
 				if (i == j)
 				{
-					if (used = false)
+					if (h[k] > 0 && !flagP)
 					{
 						bull++;
 						h[k] = h[k] - 1;
@@ -37,18 +38,26 @@ string bullpgia::calculateBullAndPgia(string choos, string guess)
 					}   
 					else
 					{
-						bull++;
-						pgia--;
-						break;
+						if (pgia > 0)
+						{
+							bull++;
+							pgia--;
+							break;
+						}
+						else
+						{
+							bull++;
+							break;
+						}
 					}
 				}
 				else
 				{
-					if (h[k] > 0)
+					if (h[k] > 0 && !flagP)
 					{
 						pgia++;
 						h[k] = h[k] - 1;
-						used = true;
+						flagP = true;
 					}
 				}
 			}

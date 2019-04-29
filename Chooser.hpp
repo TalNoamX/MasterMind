@@ -9,7 +9,7 @@ namespace bullpgia {
 	class Chooser {
 
 		public:
-			virtual string choose(uint length) {};
+			virtual string choose(uint length) { return string(); };
 	};
 }
 

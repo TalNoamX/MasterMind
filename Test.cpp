@@ -116,9 +116,9 @@ int main() {
 
 		testcase.setname("Test case 3:")
 			.CHECK_OUTPUT(calculateBullAndPgia("0000", "9876"), "0,0")
-			.CHECK_OUTPUT(calculateBullAndPgia("9876", "1236"), "0,1")
+			.CHECK_OUTPUT(calculateBullAndPgia("9876", "1236"), "1,0")
 			.CHECK_OUTPUT(calculateBullAndPgia("22222", "22222"), "5,0")
-			.CHECK_OUTPUT(calculateBullAndPgia("9871", "9876"), "3,1")
+			.CHECK_OUTPUT(calculateBullAndPgia("9871", "9876"), "3,0")
 			.CHECK_OUTPUT(calculateBullAndPgia("12345", "67891"), "0,1")
 			.CHECK_OUTPUT(calculateBullAndPgia("10234", "70685"), "1,0")
 
