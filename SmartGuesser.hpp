@@ -1,4 +1,5 @@
 #include "Guesser.hpp"
+#include "calculate.hpp"
 #include <vector>
 using bullpgia::Guesser;
 namespace bullpgia {
