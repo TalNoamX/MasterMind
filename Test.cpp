@@ -95,22 +95,22 @@ int main() {
 
 			.CHECK_EQUAL(play(c0, g0, 1, 5), 1)
 			.CHECK_EQUAL(play(c0, g1, 1, 10), 11)
-			.CHECK_EQUAL(play(c12, g0, 2, 25), 0)
+			.CHECK_EQUAL(play(c12, g0, 2, 25), 26)
 			.CHECK_EQUAL(play(c12, g12, 2, 1), 1)
 
 			.CHECK_EQUAL(play(c00001, g00001, 5, 18), 1)
 			.CHECK_EQUAL(play(c55555555, g55555555, 8, 65), 1)
 			.CHECK_EQUAL(play(c8008, g8008, 4, 100), 1)
-			.CHECK_EQUAL(play(c1, g8008, 1, 34), 0)
+			.CHECK_EQUAL(play(c1, g8008, 1, 34), 35)
 
-			.CHECK_EQUAL(play(c00001, g0, 5, 200), 0)
-			.CHECK_EQUAL(play(c1, g55555555, 1, 3), 0)
-			.CHECK_EQUAL(play(c0, g00001, 1, 100), 0)
+			.CHECK_EQUAL(play(c00001, g0, 5, 200), 201)
+			.CHECK_EQUAL(play(c1, g55555555, 1, 3), 4)
+			.CHECK_EQUAL(play(c0, g00001, 1, 100), 101)
 			.CHECK_EQUAL(play(c00001, g00001, 5, 657), 1)
 
 			.CHECK_EQUAL(play(c00001, g00003, 5, 356), 357)
 			.CHECK_EQUAL(play(c00002, g00002, 5, 3), 1)
-			.CHECK_EQUAL(play(c00003, g00002, 5, 123), 1235)
+			.CHECK_EQUAL(play(c00003, g00002, 5, 123), 124)
 			.CHECK_EQUAL(play(c00003, g00001, 5, 11), 12)
 			;
 
@@ -122,7 +122,7 @@ int main() {
 			.CHECK_OUTPUT(calculateBullAndPgia("12345", "67891"), "0,1")
 			.CHECK_OUTPUT(calculateBullAndPgia("10234", "70685"), "1,0")
 
-			.CHECK_EQUAL(play(c0000, g12345, 4, 100), 0) //guesser choose illegle string
+			.CHECK_EQUAL(play(c0000, g12345, 5, 100), 0) //guesser choose illegle string
 			.CHECK_EQUAL(play(c12345, g13579, 5, 100), 101) //guesser loose
 			.CHECK_EQUAL(play(c9999, g2468, 4, 100), 101)
 			.CHECK_EQUAL(play(c9876, g0000, 4, 100), 101)
@@ -132,8 +132,8 @@ int main() {
 
 			.CHECK_EQUAL(play(cmod3, g2468, 4, 100), 0) //chooser chose a iligel string
 			.CHECK_EQUAL(play(c0000, gmod3, 4, 100), 101) //guesser chose a illegel string
-			.CHECK_EQUAL(play(cmod3, g13579, 4, 100), 101)
-			.CHECK_EQUAL(play(c12345, gmod3, 4, 100), 101)
+			.CHECK_EQUAL(play(cmod3, g13579, 4, 100), 0)
+			.CHECK_EQUAL(play(c12345, gmod3, 5, 100), 101)
 			;
 
 

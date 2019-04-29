@@ -10,7 +10,7 @@ string bullpgia::calculateBullAndPgia(string choos, string guess)
 	string answer = "";
 	int bull = 0;
 	int pgia = 0;
-	int h[10];
+	int h[10] = { 0,0,0,0,0,0,0,0,0,0 };
 	int k;
 	bool flagP = false;
 
