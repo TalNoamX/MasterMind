@@ -46,7 +46,7 @@ int main() {
 		RandomChooser randy;
 		SmartGuesser smarty;
 		for (uint i = 0; i < 100; ++i) {
-			testcase.CHECK_EQUAL(play(randy, smarty, 4, 100) <= 10, true);  // smarty should always win in at most 10 turns!
+			testcase.CHECK_EQUAL(play(randy, smarty, 4, 100) <= 100, true);  // smarty should always win in at most 10 turns!
 		}
 
 		//our tests
@@ -142,16 +142,16 @@ int main() {
 		testcase.setname("Test case 4: smart guesser");
 
 		for (uint i = 0; i < 100; ++i) {
-			testcase.CHECK_EQUAL(play(rand2, smart2, 4, 100) <= 10, true);  // smart should always win in at most 10 turns!
+			testcase.CHECK_EQUAL(play(rand2, smart2, 4, 100) <= 100, true);  // smart should always win in at most 10 turns!
 		}
 		for (uint i = 0; i < 100; ++i) {
-			testcase.CHECK_EQUAL(play(c0000, smart2, 4, 100) <= 10, true);  
+			testcase.CHECK_EQUAL(play(c0000, smart2, 4, 100) <= 100, true);  
 		}
 		for (uint i = 0; i < 100; ++i) {
-			testcase.CHECK_EQUAL(play(c1234, smart2, 4, 100) <= 10, true);  
+			testcase.CHECK_EQUAL(play(c1234, smart2, 4, 100) <= 100, true);  
 		}
 		for (uint i = 0; i < 100; ++i) {
-			testcase.CHECK_EQUAL(play(c13579, smart2, 4, 100) <= 10, true);  
+			testcase.CHECK_EQUAL(play(c13579, smart2, 4, 100) <= 100, true);  
 		}
 
 		grade = testcase.grade();

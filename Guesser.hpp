@@ -14,8 +14,13 @@ namespace bullpgia {
 		uint length;
 
 	public:
-		virtual string guess() { return string(); };
-		virtual void startNewGame(uint len) {};
+		virtual string guess()=0;
+
+		virtual void startNewGame(uint len) 
+		{
+			this->length = len;
+		};
+
 		virtual void learn(string ans) {};
 	};
 }
