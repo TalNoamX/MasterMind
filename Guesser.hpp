@@ -9,6 +9,7 @@ using namespace std;
 namespace bullpgia {
 
 	class Guesser {
+		protected string answer;
 
 	protected:
 		uint length;
