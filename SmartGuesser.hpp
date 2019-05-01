@@ -7,7 +7,7 @@ namespace bullpgia {
 	private:
 		int length;
 		vector<int> pastguesses;
-		private char num = '0';
+		 char num = '0';
 
 	public:
 		string guess() override;
