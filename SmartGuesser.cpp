@@ -20,5 +20,6 @@ void bullpgia::SmartGuesser::learn(string ans)
 		{
 			ans[i] = this->num;
 		}
+
 	}
 }
