@@ -9,18 +9,15 @@ using namespace std;
 namespace bullpgia {
 
 	class Guesser {
-		protected string answer;
 
 	protected:
 		uint length;
+		string answer;
 
 	public:
 		virtual string guess()=0;
 
-		virtual void startNewGame(uint len) 
-		{
-			this->length = len;
-		};
+		virtual void startNewGame(uint len) {this->length = len;};
 
 		virtual void learn(string ans) {};
 	};

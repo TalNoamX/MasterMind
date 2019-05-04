@@ -4,12 +4,17 @@
 using bullpgia::Guesser;
 namespace bullpgia {
 	class SmartGuesser :public Guesser {
+
 	private:
-		int length;
 		vector<int> pastguesses;
-		 char num = '0';
+		int* bulls;
+		int StrCounter;
+		int ArrCounter;
+
 
 	public:
+		void startNewGame(uint len) override;
 		string guess() override;
+		void learn(string ans) override;
 	};
 }

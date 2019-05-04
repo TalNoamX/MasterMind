@@ -3,23 +3,44 @@ using namespace std;
 using bullpgia::SmartGuesser;
 
 
+void bullpgia::SmartGuesser::startNewGame(uint len)
+{
+	this->length = len;
+	for (int i = 0; i < length; i++)
+	{
+		this->answer = this->answer + "0";
+	}
+	this->bulls = new int(length);
+	this->ArrCounter = 0;
+	this->StrCounter = 0;
+}
+
 string bullpgia::SmartGuesser::guess()
 {
-	return string();
+	return answer;
 }
 void bullpgia::SmartGuesser::learn(string ans)
 {
-	std::int comma = ans.find(","); //location of ,
-	std::string bull = ans.substr(0, comma - 1);//the bull string of the answer
-	std::string pgia = ans.substr(comma + 1); //the pgia string;
-	int bullcount = std::stoi(bull); //parsh the string bull to int
-	int pgiacount = std::stoi(pgia);
-	if (bullcount + pgiacount != ans.size())
+	if (StrCounter < 10)
 	{
-		for (int i = 0; i < ans.size(); i++)
+		int comma = ans.find(','); //location of ,
+		string SstrBull = ans.substr(0, comma - 1);//the bull string of the answer
+		int numOfBalls = stoi(SstrBull);
+		for (int i = 0; i < numOfBalls; i++)
 		{
-			ans[i] = this->num;
+			bulls[ArrCounter] = StrCounter;
+			ArrCounter++;
 		}
-
+		
+		StrCounter++;
+		string c = to_string(StrCounter)
+		for (int i = 0; i < this->length; i++)
+		{
+			this->answer = this->answer + c;
+		}
+	}
+	else
+	{
+		
 	}
 }
