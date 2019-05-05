@@ -8,4 +8,4 @@ namespace bullpgia {
 
 	class calculate {};
 	string calculateBullAndPgia(string choos, string guess);
-}
+};
