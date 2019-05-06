@@ -91,26 +91,26 @@ void bullpgia::SmartGuesser::startNewGame(uint len)
 
 void bullpgia::SmartGuesser::learn(string ans)
 {
-	int numOfBalls = ans[0] - 48;
-	if (firstCounter < 9)
+	int numOfBalls = ans[0] - 48; //the number of bull we got
+	if (firstCounter < 9) //if firstcounter < 9 we didnt check all the numbers from 0 to 9
 	{
-		if (numOfBalls != 0) 
+		if (numOfBalls != 0) //if we have abull in the number we add it to bulls
 		{
 			this->bulls[firstCounter] = numOfBalls;
 		}
 
-		firstCounter++;
+		firstCounter++; //index of bulls
 		this->answer = "";
 
 		for (int i = 0; i < length; i++)
 		{
-			this->answer += to_string(firstCounter);
+			this->answer += to_string(firstCounter); //translate to answer
 		}
 	}
 
-	else if (firstCounter == 9)
+	else if (firstCounter == 9) //if we check all the numbers from 0 to 9
 	{
-		if (numOfBalls != 0) 
+		if (numOfBalls != 0) //if we have bulls than we add it to bulls
 		{
 			this->bulls[firstCounter] = numOfBalls;
 		}
@@ -119,20 +119,20 @@ void bullpgia::SmartGuesser::learn(string ans)
 
 	else
 	{
-		if (IfNoPermu) 
+		if (IfNoPermu)  //if true enter
 		{
-			this->answer = "";
+			this->answer = ""; //answer start withe nothing
 			IfNoPermu = false;
 
 			for (int i = 0; i <=9; i++)
 			{
-				while (bulls[i] > 0)
+				while (bulls[i] > 0) //if we have bulls int that i enter
 				{
-					this->answer += to_string(i);
-					bulls[i]--;
+					this->answer += to_string(i); //add to answer the number in bulls i
+					bulls[i]--; 
 				}
 			}
-			permotationMaker(this->answer,0,this->length-1);
+			permotationMaker(this->answer,0,this->length-1); //make the permotations until we get the right answer
 		}
 
 		else
