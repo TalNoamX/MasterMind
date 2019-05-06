@@ -5,11 +5,11 @@
  * @since  2019-04
  */
 
-using namespace std;
 
 #include <iostream>
+using namespace std;
+
 #include "play.hpp"
-#include "calculate.hpp"
 #include "DummyChoosers.hpp"
 #include "DummyGuessers.hpp"
 #include "SmartGuesser.hpp"
@@ -20,12 +20,10 @@ using namespace bullpgia;
 
 int main() {
 
-
 	badkan::TestCase testcase;
 	int grade = 0;
 	int signal = setjmp(badkan::longjmp_buffer);
 	if (signal == 0) {
-
 
 		// BASIC TESTS - DO NOT CHANGE
 		ConstantChooser c1234{ "1234" }, c12345{ "12345" }, c9999{ "9999" };
@@ -34,7 +32,6 @@ int main() {
 		testcase.setname("Calculate bull and pgia")
 			.CHECK_OUTPUT(calculateBullAndPgia("1234", "1234"), "4,0")      // 4 bull, 0 pgia
 			.CHECK_OUTPUT(calculateBullAndPgia("1234", "4321"), "0,4")      // 0 bull, 4 pgia
-			
 			;
 
 		testcase.setname("Play with dummy choosers and guessers")
@@ -44,14 +41,11 @@ int main() {
 			.CHECK_EQUAL(play(c12345, g1234, 4, 100), 0)     // chooser loses technically by choosing an illegal number (too long).
 			;
 
-
 		testcase.setname("Play with smart guesser");
 		RandomChooser randy;
 		SmartGuesser smarty;
-		
-
 		for (uint i = 0; i < 100; ++i) {
-			testcase.CHECK_EQUAL(play(randy, smarty, 4, 100) <= 100, true);  // smarty should always win in at most 100 turns!
+			testcase.CHECK_EQUAL(play(randy, smarty, 4, 100) <= 100, true);  // smarty should always win in at most 10 turns!
 		}
 
 		//our tests
@@ -62,8 +56,8 @@ int main() {
 		ConstantGuesser g2468{ "2468" }, gmod3{ "36912" }, g0000{ "0000" };
 		testcase.setname("Test case 1:")
 
-			.CHECK_OUTPUT(calculateBullAndPgia("1919", "9191"), "0,4")    
-			.CHECK_OUTPUT(calculateBullAndPgia("9876", "9876"), "4,0")   
+			.CHECK_OUTPUT(calculateBullAndPgia("1919", "9191"), "0,4")
+			.CHECK_OUTPUT(calculateBullAndPgia("9876", "9876"), "4,0")
 			.CHECK_OUTPUT(calculateBullAndPgia("9876", "9867"), "2,2")
 			.CHECK_OUTPUT(calculateBullAndPgia("111", "222"), "0,0")
 			.CHECK_OUTPUT(calculateBullAndPgia("2366", "6600"), "0,2")
@@ -146,7 +140,18 @@ int main() {
 		SmartGuesser smart2;
 		testcase.setname("Test case 4: smart guesser");
 
-	
+		for (uint i = 0; i < 100; ++i) {
+			testcase.CHECK_EQUAL(play(rand2, smart2, 4, 100) <= 100, true);  // smart should always win in at most 10 turns!
+		}
+		for (uint i = 0; i < 100; ++i) {
+			testcase.CHECK_EQUAL(play(c0000, smart2, 4, 100) <= 100, true);
+		}
+		for (uint i = 0; i < 100; ++i) {
+			testcase.CHECK_EQUAL(play(c1234, smart2, 4, 100) <= 100, true);
+		}
+		for (uint i = 0; i < 100; ++i) {
+			testcase.CHECK_EQUAL(play(c13579, smart2, 4, 100) <= 100, true);
+		}
 
 		grade = testcase.grade();
 	}

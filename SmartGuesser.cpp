@@ -14,11 +14,13 @@ int bullpgia::SmartGuesser::permotationLen()
 {
 	int len = this->length;
 	int leng = this->length;
+
 	while (len > 2)
 	{
 		len --;
 		leng = leng *len;
 	}
+
 	return leng;
 }
 
@@ -33,14 +35,16 @@ void bullpgia::SmartGuesser::swap(char & c1, char & c2)
 void bullpgia::SmartGuesser::permotationMaker(string str, int start, int end)
 {
 	int tempIndex;
+
 	if (start == end)
 	{
-		if (permutationFunc < permoLen)
+		if (permuCurr < permoLen)
 		{
-			pastguesses.push_back(str);
-			permutationFunc++;
+			pastguess.push_back(str);
+			permuCurr++;
 		}
 	}
+
 	else
 	{
 		for (tempIndex = start; tempIndex < str.size(); tempIndex++)
@@ -63,14 +67,19 @@ string bullpgia::SmartGuesser::guess()
 void bullpgia::SmartGuesser::startNewGame(uint len)
 {
 	this->length = len;
-	this->moves = 0;
-	for (int i = 0; i < 10; i++) { bulls[i] = 0; }
-	this->zeroToTen = 0;//0 to 10
-	flag = true;//permu flag
-	this->permutationFunc = 0; //pemuu function init
-	this->mainLearnMove = 0;//learn iterations
+	pastguess.clear();
+	this->answer = "";
+	this->IfNoPermu = true;
+	this->permuCurr = 0;
 	this->permoLen = permotationLen();
-	pastguesses.clear();
+	this->firstCounter = 0;
+	this->moves = 0;
+	this->permuGuesses = 0;
+
+	for (int i = 0; i < 10; i++)
+	{ 
+		bulls[i] = 0;
+	}
 
 	for (int i = 0; i < length; i++)
 	{
@@ -83,41 +92,43 @@ void bullpgia::SmartGuesser::startNewGame(uint len)
 void bullpgia::SmartGuesser::learn(string ans)
 {
 	int numOfBalls = ans[0] - 48;
-	if (zeroToTen < 9)
+	if (firstCounter < 9)
 	{
 		if (numOfBalls != 0) 
 		{
-		this->bulls[zeroToTen] = numOfBalls;
+			this->bulls[firstCounter] = numOfBalls;
 		}
-		zeroToTen++;
+
+		firstCounter++;
 		this->answer = "";
-		//int bullNumber = std::stoi(SstrBull);
+
 		for (int i = 0; i < length; i++)
 		{
-			this->answer = this->answer + to_string(zeroToTen);
+			this->answer += to_string(firstCounter);
 		}
 	}
 
-	else if (zeroToTen == 9)
+	else if (firstCounter == 9)
 	{
 		if (numOfBalls != 0) 
 		{
-			this->bulls[zeroToTen] = numOfBalls;
+			this->bulls[firstCounter] = numOfBalls;
 		}
-		zeroToTen = 999;
+		firstCounter = 999;
 	}
 
 	else
 	{
-		if (flag) 
-		{//create the vector
+		if (IfNoPermu) 
+		{
 			this->answer = "";
-			flag = false;
+			IfNoPermu = false;
+
 			for (int i = 0; i <=9; i++)
 			{
 				while (bulls[i] > 0)
 				{
-					this->answer = this->answer + to_string(i);
+					this->answer += to_string(i);
 					bulls[i]--;
 				}
 			}
@@ -126,10 +137,10 @@ void bullpgia::SmartGuesser::learn(string ans)
 
 		else
 		{
-			if (mainLearnMove < permoLen)
+			if (permuGuesses < permoLen)
 			{
-				this->answer = pastguesses[mainLearnMove];
-				mainLearnMove++;
+				this->answer = pastguess[permuGuesses];
+				permuGuesses++;
 				this->moves++;
 			}
 		}
